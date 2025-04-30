@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Organic Market - Fresh Organic Food Delivered to Your Door</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#4CAF50',secondary:'#8BC34A'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Poppins', sans-serif;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+.category-item:hover {
+transform: scale(1.05);
+transition: transform 0.3s ease;
+}
+.product-card:hover {
+transform: translateY(-5px);
+transition: transform 0.3s ease;
+box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+.custom-checkbox {
+display: flex;
+align-items: center;
+cursor: pointer;
+}
+.custom-checkbox input {
+position: absolute;
+opacity: 0;
+cursor: pointer;
+}
+.checkmark {
+height: 20px;
+width: 20px;
+background-color: #fff;
+border: 2px solid #e5e7eb;
+border-radius: 4px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.custom-checkbox input:checked ~ .checkmark {
+background-color: #4CAF50;
+border-color: #4CAF50;
+}
+.checkmark:after {
+content: "";
+display: none;
+}
+.custom-checkbox input:checked ~ .checkmark:after {
+display: block;
+width: 5px;
+height: 10px;
+border: solid white;
+border-width: 0 2px 2px 0;
+transform: rotate(45deg);
+}
+.star-rating {
+color: #FFD700;
+}
+</style>
+</head>
+<body class="bg-white">
+<!-- Header Section -->
+<header class="sticky top-0 z-50 bg-white shadow-sm">
+    <div class="container mx-auto px-4 py-3 sm:py-4 flex items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <h1 class="text-2xl sm:text-3xl font-['Pacifico'] text-primary">Peshi</h1>
+        <div class="ml-1 sm:ml-2 px-1 sm:px-2 py-0.5 sm:py-1 bg-primary/10 rounded-full text-xs text-primary font-semibold">
+          Organic Certified
+        </div>
+      </div>
+  
+      <!-- Mobile Menu Button -->
+      <button class="md:hidden w-10 h-10 flex items-center justify-center" aria-label="Toggle menu">
+        <i class="ri-menu-line text-xl"></i>
+      </button>
+  
+      <!-- Desktop Navigation and Icons -->
+      <div class="hidden md:flex items-center space-x-6">
+        <nav class="flex space-x-6 lg:space-x-8">
+          <a href="#" class="text-gray-700 hover:text-primary font-medium text-sm lg:text-base">Produce</a>
+          <a href="#" class="text-gray-700 hover:text-primary font-medium text-sm lg:text-base">Dairy</a>
+          <a href="#" class="text-gray-700 hover:text-primary font-medium text-sm lg:text-base">Pantry</a>
+          <a href="#" class="text-gray-700 hover:text-primary font-medium text-sm lg:text-base">Fresh Meat</a>
+          <a href="#" class="text-gray-700 hover:text-primary font-medium text-sm lg:text-base">Bakery</a>
+        </nav>
+  
+        <div class="flex items-center space-x-4 lg:space-x-6">
+          <div class="relative hidden lg:block">
+            <input type="text" placeholder="Search products..." 
+                   class="w-40 lg:w-64 pl-10 pr-4 py-2 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm">
+            <div class="absolute left-3 top-2.5 w-5 h-5 flex items-center justify-center text-gray-400">
+              <i class="ri-search-line"></i>
+            </div>
+          </div>
+          
+          <div class="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center relative cursor-pointer">
+            <i class="ri-shopping-cart-2-line text-xl text-gray-700 hover:text-primary"></i>
+            <span class="absolute -top-1 -right-1 bg-primary text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">3</span>
+          </div>
+          
+          <div class="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center cursor-pointer">
+            <i class="ri-user-line text-xl text-gray-700 hover:text-primary"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Mobile Search (shown only on mobile) -->
+    <div class="md:hidden px-4 pb-3">
+      <div class="relative">
+        <input type="text" placeholder="Search products..." 
+               class="w-full pl-10 pr-4 py-2 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm">
+        <div class="absolute left-3 top-2.5 w-5 h-5 flex items-center justify-center text-gray-400">
+          <i class="ri-search-line"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+<!-- Hero Banner -->
+<section class="relative h-[500px] overflow-hidden">
+<div style="background-image: url('https://readdy.ai/api/search-image?query=A%20stunning%20high-quality%20image%20of%20fresh%20organic%20produce%20arranged%20beautifully%20on%20a%20rustic%20wooden%20table.%20The%20image%20shows%20vibrant%20vegetables%20and%20fruits%20including%20leafy%20greens%2C%20colorful%20bell%20peppers%2C%20heirloom%20tomatoes%2C%20and%20seasonal%20berries.%20Natural%20sunlight%20streams%20in%20from%20the%20left%20side%2C%20creating%20a%20gradient%20effect%20with%20more%20light%20on%20the%20left%20and%20a%20subtle%20transition%20to%20the%20right%20where%20the%20produce%20is%20more%20visible.%20The%20left%20side%20has%20a%20clean%2C%20minimalist%20appearance%20to%20allow%20text%20overlay.&width=1920&height=1000&seq=hero1&orientation=landscape'); background-size: cover; background-position: center;" class="absolute inset-0 w-full h-full">
+<div class="absolute inset-0 bg-gradient-to-r from-white/90 to-white/30"></div>
+</div>
+<div class="container mx-auto px-4 h-full flex items-center relative">
+<div class="max-w-xl">
+<h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Fresh Organic Food Delivered to Your Door</h1>
+<p class="text-lg text-gray-600 mb-8">Experience the pure taste of nature with our certified organic products. Harvested at peak freshness and delivered straight to your doorstep.</p>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-button font-medium text-lg transition-colors whitespace-nowrap">Shop Now</button>
+<button class="border border-gray-300 hover:border-primary hover:text-primary px-8 py-3 rounded-button font-medium text-lg transition-colors whitespace-nowrap">Learn More</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Category Highlights -->
+<section class="py-16 bg-gray-50">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Shop by Category</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 md:gap-8">
+<div class="category-item flex flex-col items-center transition-transform">
+<div class="w-32 h-32 rounded-full overflow-hidden mb-4 shadow-md">
+<img src="https://readdy.ai/api/search-image?query=A%20top-down%20view%20of%20various%20fresh%20organic%20vegetables%20including%20carrots%2C%20bell%20peppers%2C%20and%20leafy%20greens%20arranged%20on%20a%20clean%20white%20background.%20The%20image%20has%20vibrant%20colors%20and%20shows%20the%20natural%20textures%20of%20the%20produce.%20Perfect%20lighting%20highlights%20the%20freshness%20of%20the%20vegetables.&width=300&height=300&seq=cat1&orientation=squarish" alt="Fresh Vegetables" class="w-full h-full object-cover">
+</div>
+<h3 class="font-medium text-gray-800">Fresh Vegetables</h3>
+</div>
+<div class="category-item flex flex-col items-center transition-transform">
+<div class="w-32 h-32 rounded-full overflow-hidden mb-4 shadow-md">
+<img src="https://readdy.ai/api/search-image?query=A%20beautiful%20arrangement%20of%20fresh%20organic%20fruits%20including%20apples%2C%20oranges%2C%20berries%2C%20and%20bananas%20on%20a%20clean%20white%20background.%20The%20fruits%20look%20juicy%20and%20perfectly%20ripe%20with%20vibrant%20natural%20colors.%20The%20lighting%20is%20bright%20and%20even%2C%20highlighting%20the%20fresh%20quality%20of%20the%20produce.&width=300&height=300&seq=cat2&orientation=squarish" alt="Fresh Fruits" class="w-full h-full object-cover">
+</div>
+<h3 class="font-medium text-gray-800">Fresh Fruits</h3>
+</div>
+<div class="category-item flex flex-col items-center transition-transform">
+<div class="w-32 h-32 rounded-full overflow-hidden mb-4 shadow-md">
+<img src="https://readdy.ai/api/search-image?query=A%20collection%20of%20organic%20dairy%20products%20including%20milk%20in%20glass%20bottles%2C%20artisanal%20cheeses%2C%20and%20fresh%20yogurt%20arranged%20on%20a%20clean%20white%20background.%20The%20products%20look%20premium%20and%20farm-fresh%20with%20minimal%20packaging.%20The%20lighting%20is%20bright%20and%20even%20to%20showcase%20the%20creamy%20textures.&width=300&height=300&seq=cat3&orientation=squarish" alt="Dairy Products" class="w-full h-full object-cover">
+</div>
+<h3 class="font-medium text-gray-800">Dairy Products</h3>
+</div>
+<div class="category-item flex flex-col items-center transition-transform">
+<div class="w-32 h-32 rounded-full overflow-hidden mb-4 shadow-md">
+<img src="https://readdy.ai/api/search-image?query=Premium%20cuts%20of%20organic%2C%20grass-fed%20meat%20including%20beef%2C%20chicken%2C%20and%20lamb%20arranged%20on%20a%20clean%20white%20background.%20The%20meat%20looks%20fresh%20and%20high-quality%20with%20rich%20natural%20coloring.%20The%20lighting%20is%20bright%20and%20even%20to%20showcase%20the%20quality%20of%20the%20cuts%20without%20any%20distractions.&width=300&height=300&seq=cat4&orientation=squarish" alt="Fresh Meat" class="w-full h-full object-cover">
+</div>
+<h3 class="font-medium text-gray-800">Fresh Meat</h3>
+</div>
+<div class="category-item flex flex-col items-center transition-transform">
+<div class="w-32 h-32 rounded-full overflow-hidden mb-4 shadow-md">
+<img src="https://readdy.ai/api/search-image?query=A%20variety%20of%20organic%20pantry%20staples%20including%20grains%2C%20nuts%2C%20dried%20fruits%2C%20and%20legumes%20in%20glass%20jars%20arranged%20on%20a%20clean%20white%20background.%20The%20products%20look%20natural%20and%20wholesome%20with%20rich%20textures%20and%20colors.%20The%20lighting%20is%20bright%20and%20even%20to%20showcase%20the%20quality%20ingredients.&width=300&height=300&seq=cat5&orientation=squarish" alt="Pantry Staples" class="w-full h-full object-cover">
+</div>
+<h3 class="font-medium text-gray-800">Pantry Staples</h3>
+</div>
+<div class="category-item flex flex-col items-center transition-transform">
+<div class="w-32 h-32 rounded-full overflow-hidden mb-4 shadow-md">
+<img src="https://readdy.ai/api/search-image?query=A%20selection%20of%20freshly%20baked%20organic%20bread%2C%20pastries%2C%20and%20baked%20goods%20arranged%20on%20a%20clean%20white%20background.%20The%20baked%20items%20have%20golden-brown%20crusts%20and%20look%20artisanal%20with%20natural%20textures.%20The%20lighting%20is%20bright%20and%20even%20to%20showcase%20the%20details%20of%20the%20baked%20goods.&width=300&height=300&seq=cat6&orientation=squarish" alt="Bakery" class="w-full h-full object-cover">
+</div>
+<h3 class="font-medium text-gray-800">Bakery</h3>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Products -->
+<section class="py-16">
+<div class="container mx-auto px-4">
+<div class="flex justify-between items-center mb-12">
+<h2 class="text-3xl font-bold text-gray-800">Featured Products</h2>
+<a href="#" class="text-primary hover:text-primary/80 font-medium flex items-center">
+View All
+<div class="w-5 h-5 flex items-center justify-center ml-1">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+<!-- Product 1 -->
+<div class="product-card bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 transition-all">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=A%20fresh%20bunch%20of%20organic%20kale%20with%20vibrant%20green%20leaves%20on%20a%20clean%20white%20background.%20The%20kale%20looks%20crisp%20and%20freshly%20harvested%20with%20detailed%20leaf%20texture.%20The%20lighting%20is%20bright%20and%20even%20to%20showcase%20the%20natural%20color%20and%20freshness%20of%20the%20produce.&width=400&height=300&seq=prod1&orientation=landscape" alt="Organic Kale" class="w-full h-56 object-cover">
+<div class="absolute top-3 left-3 bg-primary/90 text-white text-xs px-2 py-1 rounded">Organic</div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-medium text-gray-800">Organic Kale Bunch</h3>
+<span class="font-semibold text-primary"> ₹399</span>
+</div>
+<div class="flex items-center mb-3">
+<div class="star-rating flex">
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-half-fill"></i>
+</div>
+<span class="text-xs text-gray-500 ml-1">(42)</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-xs text-green-600 font-medium">In Stock</span>
+<button class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-button text-sm transition-colors whitespace-nowrap">Add to Cart</button>
+</div>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="product-card bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 transition-all">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=A%20carton%20of%20organic%20free-range%20eggs%20with%20some%20eggs%20visible%20in%20the%20open%20carton%20on%20a%20clean%20white%20background.%20The%20eggs%20have%20a%20natural%2C%20slightly%20varied%20appearance%20with%20speckles%20and%20rich%20coloring.%20The%20lighting%20is%20bright%20and%20even%20to%20showcase%20the%20quality%20of%20the%20eggs.&width=400&height=300&seq=prod2&orientation=landscape" alt="Organic Eggs" class="w-full h-56 object-cover">
+<div class="absolute top-3 left-3 bg-primary/90 text-white text-xs px-2 py-1 rounded">Organic</div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-medium text-gray-800">Organic Free-Range Eggs</h3>
+<span class="font-semibold text-primary">₹549</span>
+</div>
+<div class="flex items-center mb-3">
+<div class="star-rating flex">
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+</div>
+<span class="text-xs text-gray-500 ml-1">(87)</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-xs text-green-600 font-medium">In Stock</span>
+<button class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-button text-sm transition-colors whitespace-nowrap">Add to Cart</button>
+</div>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="product-card bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 transition-all">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=A%20glass%20bottle%20of%20organic%20cold-pressed%20extra%20virgin%20olive%20oil%20on%20a%20clean%20white%20background.%20The%20oil%20has%20a%20rich%20golden-green%20color%20and%20the%20bottle%20has%20a%20premium%2C%20artisanal%20design.%20The%20lighting%20is%20bright%20and%20even%20to%20showcase%20the%20quality%20and%20color%20of%20the%20oil.&width=400&height=300&seq=prod3&orientation=landscape" alt="Olive Oil" class="w-full h-56 object-cover">
+<div class="absolute top-3 left-3 bg-primary/90 text-white text-xs px-2 py-1 rounded">Organic</div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-medium text-gray-800">Organic Extra Virgin Olive Oil</h3>
+<span class="font-semibold text-primary">₹129</span>
+</div>
+<div class="flex items-center mb-3">
+<div class="star-rating flex">
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-line"></i>
+</div>
+<span class="text-xs text-gray-500 ml-1">(63)</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-xs text-green-600 font-medium">In Stock</span>
+<button class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-button text-sm transition-colors whitespace-nowrap">Add to Cart</button>
+</div>
+</div>
+</div>
+<!-- Product 4 -->
+<div class="product-card bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 transition-all">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=A%20package%20of%20organic%20grass-fed%20ground%20beef%20on%20a%20clean%20white%20background.%20The%20meat%20has%20a%20rich%2C%20natural%20red%20color%20and%20is%20packaged%20in%20eco-friendly%20materials.%20The%20lighting%20is%20bright%20and%20even%20to%20showcase%20the%20quality%20of%20the%20meat.&width=400&height=300&seq=prod4&orientation=landscape" alt="Ground Beef" class="w-full h-56 object-cover">
+<div class="absolute top-3 left-3 bg-primary/90 text-white text-xs px-2 py-1 rounded">Organic</div>
+</div>
+<div class="p-4">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-medium text-gray-800">Organic Grass-Fed Ground Beef</h3>
+<span class="font-semibold text-primary">₹899</span>
+</div>
+<div class="flex items-center mb-3">
+<div class="star-rating flex">
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-half-fill"></i>
+</div>
+<span class="text-xs text-gray-500 ml-1">(54)</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-xs text-amber-600 font-medium">Low Stock</span>
+<button class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-button text-sm transition-colors whitespace-nowrap">Add to Cart</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Value Propositions -->
+<section class="py-16 bg-gray-50">
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="flex flex-col items-center text-center">
+<div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+<i class="ri-truck-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-xl font-semibold text-gray-800 mb-2">Free Delivery</h3>
+<p class="text-gray-600">Free delivery on all orders over $50. We deliver within 24 hours to ensure maximum freshness.</p>
+</div>
+<div class="flex flex-col items-center text-center">
+<div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+<i class="ri-leaf-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-xl font-semibold text-gray-800 mb-2">100% Organic</h3>
+<p class="text-gray-600">All our products are certified organic, grown without harmful pesticides or GMOs.</p>
+</div>
+<div class="flex flex-col items-center text-center">
+<div class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+<i class="ri-shield-check-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-xl font-semibold text-gray-800 mb-2">Fresh Guarantee</h3>
+<p class="text-gray-600">Not satisfied with the freshness? We'll replace it or refund your money, no questions asked.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter Section -->
+<section class="py-16 relative">
+<div style="background-image: url('https://readdy.ai/api/search-image?query=A%20beautiful%20organic%20farm%20landscape%20with%20rows%20of%20vegetables%20and%20fruits%20growing%20in%20neat%20rows.%20The%20image%20shows%20a%20lush%2C%20green%20farm%20with%20mountains%20in%20the%20background.%20The%20lighting%20is%20warm%20with%20golden%20hour%20sunlight%20creating%20a%20peaceful%2C%20natural%20atmosphere.%20The%20image%20has%20a%20soft%2C%20slightly%20blurred%20quality%20that%20would%20work%20well%20as%20a%20background%20for%20text%20overlay.&width=1920&height=600&seq=newsletter&orientation=landscape'); background-size: cover; background-position: center;" class="absolute inset-0 w-full h-full">
+<div class="absolute inset-0 bg-black/40"></div>
+</div>
+<div class="container mx-auto px-4 relative">
+<div class="max-w-2xl mx-auto text-center text-white">
+<h2 class="text-3xl font-bold mb-4">Join Our Community</h2>
+<p class="mb-8">Subscribe to our newsletter and receive weekly updates on new products, seasonal recipes, and exclusive offers.</p>
+<form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+<input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-button border-none text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary/50">
+<button type="submit" class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-button font-medium transition-colors whitespace-nowrap">Subscribe</button>
+</form>
+<div class="mt-4 flex items-center justify-center">
+<label class="custom-checkbox flex items-center">
+<input type="checkbox" class="hidden">
+<div class="checkmark mr-2"></div>
+<span class="text-sm">I agree to receive marketing emails and accept the <a href="#" class="underline">Privacy Policy</a></span>
+</label>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-gray-800 text-white pt-16 pb-8">
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+<div>
+<h3 class="text-xl font-['Pacifico'] text-primary mb-6">Peshi</h3>
+<p class="text-gray-300 mb-4">We're dedicated to bringing the freshest organic produce directly from local farms to your table.</p>
+<div class="flex space-x-4">
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 hover:bg-primary rounded-full transition-colors">
+<i class="ri-facebook-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 hover:bg-primary rounded-full transition-colors">
+<i class="ri-instagram-line"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 hover:bg-primary rounded-full transition-colors">
+<i class="ri-twitter-x-line"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 hover:bg-primary rounded-full transition-colors">
+<i class="ri-pinterest-line"></i>
+</a>
+</div>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-6">Quick Links</h4>
+<ul class="space-y-3">
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Shop All</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Recipes</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Blog</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Contact Us</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-6">Customer Service</h4>
+<ul class="space-y-3">
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">My Account</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Shipping Policy</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Returns & Refunds</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">FAQ</a></li>
+<li><a href="#" class="text-gray-300 hover:text-white transition-colors">Privacy Policy</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-6">Contact Us</h4>
+<ul class="space-y-3">
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center mt-1 mr-2">
+<i class="ri-map-pin-line"></i>
+</div>
+<span class="text-gray-300">9/5 Panagudi , Tamil Nadu ,India</span>
+</li>
+<li class="flex items-center">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-phone-line"></i>
+</div>
+<span class="text-gray-300">1234567890</span>
+</li>
+<li class="flex items-center">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-mail-line"></i>
+</div>
+<span class="text-gray-300">peshi@organicmarket.com</span>
+</li>
+</ul>
+<h4 class="text-lg font-semibold mt-6 mb-4">We Accept</h4>
+<div class="flex space-x-3">
+<div class="w-10 h-6 flex items-center justify-center">
+<i class="ri-visa-line text-xl"></i>
+</div>
+<div class="w-10 h-6 flex items-center justify-center">
+<i class="ri-mastercard-line text-xl"></i>
+</div>
+<div class="w-10 h-6 flex items-center justify-center">
+<i class="ri-paypal-line text-xl"></i>
+</div>
+<div class="w-10 h-6 flex items-center justify-center">
+<i class="ri-apple-fill text-xl"></i>
+</div>
+</div>
+</div>
+</div>
+<div class="border-t border-gray-700 pt-8">
+<div class="flex flex-col md:flex-row justify-between items-center">
+<p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 Peshi Organic Market. All rights reserved.</p>
+<div class="flex space-x-6">
+<a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Terms of Service</a>
+<a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
+<a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Sitemap</a>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+// Custom checkbox functionality
+const checkboxes = document.querySelectorAll('.custom-checkbox input');
+checkboxes.forEach(checkbox => {
+checkbox.addEventListener('change', function() {
+const checkmark = this.nextElementSibling;
+if (this.checked) {
+checkmark.classList.add('bg-primary', 'border-primary');
+} else {
+checkmark.classList.remove('bg-primary', 'border-primary');
+}
+});
+});
+});
+document.addEventListener('DOMContentLoaded', function() {
+// Mobile menu toggle
+const menuButton = document.querySelector('button.md\\:hidden');
+if (menuButton) {
+menuButton.addEventListener('click', function() {
+// Mobile menu functionality would go here
+alert('Mobile menu clicked - would expand navigation options');
+});
+}
+});
+</script>
+</body>
+</html>
